@@ -2,10 +2,9 @@ import type { Route } from "./+types/home";
 import Button from "../components/Button";
 import FeatureCard from "../components/FeatureCard";
 import TestimonialCard from "../components/TestimonialCard";
-import PricingPlanCard from "../components/PricingPlanCard";
-import ArticleCard from "../components/ArticleCard";
+import InsightsCard from "../components/InsightsCard";
 import NavBar from "../components/NavBar";
-import SiteFooter from "../components/SiteFooter";
+import Footer from "../components/Footer";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -17,13 +16,7 @@ export function meta({}: Route.MetaArgs) {
 export default function Home() {
   return (
     <main className="bg-white text-gray-900 font-sans text-base md:text-lg">
-      {/* Header */}
-      <header className="border-b">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="font-bold text-lg md:text-xl tracking-tight">Cheshire Wealth</div>
-          <NavBar />
-        </div>
-      </header>
+      <NavBar />
 
       {/* Hero Section */}
       <section className="bg-white py-12 border-b">
@@ -122,20 +115,23 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-2xl md:text-3xl font-bold mb-6">Insights & Resources</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <ArticleCard
-              title="How to Prepare for Retirement"
+            <InsightsCard
+              image="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80"
+              date="May 1, 2023"
+              title="Getting Started with Full Site Editing Theme"
+              excerpt="Learn the basics of full site editing and how it can benefit your next project."
+            />
+            <InsightsCard
               image="https://images.unsplash.com/photo-1515168833906-d2a3b82b3027?auto=format&fit=crop&w=400&q=80"
-              excerpt="Key steps to ensure a comfortable and secure retirement."
+              date="April 26, 2023"
+              title="Full Site Editing Theme Vs Classic Theme"
+              excerpt="A comparison of modern full site editing themes with traditional WordPress themes."
             />
-            <ArticleCard
-              title="Investment Strategies in 2025"
+            <InsightsCard
               image="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80"
-              excerpt="What to know about markets and opportunities this year."
-            />
-            <ArticleCard
-              title="Estate Planning Essentials"
-              image="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80"
-              excerpt="Protect your legacy and provide for your loved ones."
+              date="March 17, 2023"
+              title="Future of WordPress and Gutenberg Blocks"
+              excerpt="Discover what's next for WordPress site building and the block editor."
             />
           </div>
         </div>
@@ -155,7 +151,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <SiteFooter />
+      <Footer />
     </main>
   );
 }
