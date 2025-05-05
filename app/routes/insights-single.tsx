@@ -33,7 +33,9 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function InsightsSingle() {
-  const { post } = useLoaderData() as { post: { title: string; date: string; author: string; content: string; image?: string } | null };
+  const { post } = useLoaderData() as {
+    post: { title: string; date: string; author: string; content: string; image?: string } | null;
+  };
 
   if (!post) {
     return <div className="max-w-2xl mx-auto px-4 py-16">Post not found.</div>;
@@ -49,7 +51,11 @@ export default function InsightsSingle() {
           {post.date} {post.author ? `/ ${post.author}` : null}
         </div>
         {post.image && (
-          <img src={post.image} alt={post.title} className="mb-6 w-full max-h-80 object-cover rounded-lg shadow" />
+          <img
+            src={post.image}
+            alt={post.title}
+            className="mb-6 w-full max-h-80 object-cover rounded-lg shadow"
+          />
         )}
         <div className="prose max-w-none mb-6">
           <Remark>{post.content}</Remark>
