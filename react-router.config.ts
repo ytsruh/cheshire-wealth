@@ -1,6 +1,7 @@
 import type { Config } from "@react-router/dev/config";
 import fs from "fs";
 import path from "path";
+import { getAllPosts } from "./app/utils";
 
 export default {
   async prerender() {
@@ -8,12 +9,8 @@ export default {
     const staticPaths = ["/", "/insights", "/services", "/contact"];
 
     // Dynamically add all insight slugs
-    const BLOG_DIR = path.join(process.cwd(), "app/articles");
-    const files = await fs.promises.readdir(BLOG_DIR);
-    const insightPaths = files
-      .filter((file) => file.endsWith(".md"))
-      .map((file) => `/insights/${file.replace(/\\.md$/, "")}`);
-
+    const posts = await getAllPosts();
+    const insightPaths = posts.map((post) => `/insights/${post.slug}`);
     // Return all paths
     return [...staticPaths, ...insightPaths];
   },

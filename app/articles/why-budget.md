@@ -1,8 +1,8 @@
 ---
-title: "2nd post"
-date: "2025-04-19"
+title: "Why you should have a budget"
+date: "2025-02-09"
 author: "Cheshire Wealth Team"
-image: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80"
+image: "./budget-unsplash.jpg"
 ---
 
 # 2nd post

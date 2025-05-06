@@ -1,8 +1,8 @@
 ---
-title: "Welcome to Our Blog"
-date: "2025-04-19"
+title: "What is an ISA?"
+date: "2025-01-19"
 author: "Cheshire Wealth Team"
-image: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80"
+image: "./bank-unsplash.jpg"
 ---
 
 # Welcome to Our Blog

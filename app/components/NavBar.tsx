@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router";
+import { HandCoins } from "lucide-react";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -13,7 +15,15 @@ const NavBar: React.FC = () => {
   return (
     <header className="border-b">
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-        <div className="font-bold text-lg md:text-xl tracking-tight">Cheshire Wealth</div>
+        <Link
+          to="/"
+          className="font-bold text-lg md:text-xl tracking-tight flex items-center gap-x-1"
+        >
+          <span className="text-teal-600">
+            <HandCoins />
+          </span>
+          Cheshire Wealth
+        </Link>
         <nav className="relative">
           {/* Desktop Nav */}
           <ul className="hidden md:flex gap-6 text-lg">
@@ -32,13 +42,15 @@ const NavBar: React.FC = () => {
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:bg-teal-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-teal-500"
               aria-controls="mobile-menu"
               aria-expanded={open}
-              onClick={() => setOpen((v) => !v)}>
+              onClick={() => setOpen((v) => !v)}
+            >
               <svg
                 className="h-6 w-6"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
+                xmlns="http://www.w3.org/2000/svg"
+              >
                 {open ? (
                   <path
                     strokeLinecap="round"
@@ -65,7 +77,8 @@ const NavBar: React.FC = () => {
                   <a
                     href={link.href}
                     className="block px-4 py-3 text-gray-700 hover:bg-teal-50 hover:text-teal-600"
-                    onClick={() => setOpen(false)}>
+                    onClick={() => setOpen(false)}
+                  >
                     {link.label}
                   </a>
                 </li>

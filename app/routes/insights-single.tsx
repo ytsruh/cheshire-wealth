@@ -3,26 +3,15 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { useLoaderData } from "react-router";
 import { Remark } from "react-remark";
+import { getSinglePost } from "~/utils";
 
 export async function loader({ params }: Route.LoaderArgs) {
-  const path = await import("path");
-  const fs = await import("fs");
-  const matter = (await import("gray-matter")).default;
-  const BLOG_DIR = path.join(process.cwd(), "app/articles");
-  const slug = params.slug || "first-post";
-  const filePath = path.join(BLOG_DIR, `${slug}.md`);
-  if (!fs.existsSync(filePath)) return { post: null };
-  const source = await fs.promises.readFile(filePath, "utf8");
-  const { data, content } = matter(source);
-  return {
-    post: {
-      title: data.title || "Untitled",
-      date: data.date || "",
-      author: data.author || "",
-      image: data.image || "",
-      content,
-    },
-  };
+  const slug = params.slug;
+  if (!slug) {
+    throw new Error("No slug found");
+  }
+  const post = await getSinglePost(slug);
+  return { post };
 }
 
 export function meta({}: Route.MetaArgs) {
@@ -33,9 +22,7 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function InsightsSingle() {
-  const { post } = useLoaderData() as {
-    post: { title: string; date: string; author: string; content: string; image?: string } | null;
-  };
+  const { post } = useLoaderData();
 
   if (!post) {
     return <div className="max-w-2xl mx-auto px-4 py-16">Post not found.</div>;
