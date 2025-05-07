@@ -21,6 +21,10 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
+interface BlogMarkdown {
+  children?: string[];
+}
+
 export default function InsightsSingle() {
   const { post } = useLoaderData();
 
@@ -32,8 +36,8 @@ export default function InsightsSingle() {
     <main className="bg-white text-gray-900 font-sans text-base md:text-lg min-h-screen flex flex-col">
       {/* Header */}
       <NavBar />
-      <section className="flex-1 max-w-2xl mx-auto px-4 py-16">
-        <h1 className="text-2xl md:text-3xl font-bold mb-4">{post.title}</h1>
+      <section className="flex-1 max-w-4xl mx-auto px-4 py-16">
+        <h1 className="text-3xl md:text-4xl font-bold mb-4">{post.title}</h1>
         <div className="text-sm text-gray-500 mb-2">
           {post.date} {post.author ? `/ ${post.author}` : null}
         </div>
@@ -45,7 +49,50 @@ export default function InsightsSingle() {
           />
         )}
         <div className="prose max-w-none mb-6">
-          <Remark>{post.content}</Remark>
+          <Remark
+            rehypeReactOptions={{
+              components: {
+                h1: (props: BlogMarkdown) => (
+                  <h1
+                    className="text-2xl md:text-3xl font-bold my-2"
+                    {...props}
+                  />
+                ),
+                h2: (props: BlogMarkdown) => (
+                  <h2
+                    className="text-xl md:text-2xl font-bold my-2"
+                    {...props}
+                  />
+                ),
+                h3: (props: BlogMarkdown) => (
+                  <h3
+                    className="text-lg md:text-xl font-bold my-2"
+                    {...props}
+                  />
+                ),
+                p: (props: BlogMarkdown) => (
+                  <p className="text-lg" {...props} />
+                ),
+                strong: (props: BlogMarkdown) => (
+                  <strong className="font-base" {...props} />
+                ),
+                hr: (props: BlogMarkdown) => (
+                  <hr className="my-4 text-gray-300" {...props} />
+                ),
+                ul: (props: BlogMarkdown) => (
+                  <ul className="list-disc pl-6 py-2" {...props} />
+                ),
+                li: (props: BlogMarkdown) => (
+                  <li className="text-lg" {...props} />
+                ),
+                a: (props: BlogMarkdown) => (
+                  <a className="text-teal-500 hover:underline" {...props} />
+                ),
+              },
+            }}
+          >
+            {post.content}
+          </Remark>
         </div>
       </section>
       {/* Footer */}
